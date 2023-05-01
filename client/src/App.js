@@ -2,15 +2,16 @@ import Upload from "./artifacts/contracts/Upload.sol/Upload.json";
 import { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import './App.css';
-// import {
-//   BrowserRouter,
-//   Routes,
-//   Route
-// } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
 // import GetStudent from "./components/GetStudent";
 // import AddStudent from "./components/AddStudent";
 // import Create from "./components/Create";
 import ListDocs from "./components/ListDocs";
+import Create from "./components/Create";
 
 function App() {
   //for awaiting metamask connection
@@ -71,7 +72,14 @@ function App() {
       <br />
       <br />
       <Create account={account} contract={contract} /> */}
-      <ListDocs />
+      {/* <ListDocs account={account} contract={contract} /> */}
+
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" exact element={<ListDocs account={account} contract={contract} />} />
+          <Route path="/addCertificate" exact element={<Create contract={contract} account={account} />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
