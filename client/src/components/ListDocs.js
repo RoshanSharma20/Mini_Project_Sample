@@ -29,8 +29,8 @@ function ListDocs() {
                     <button className='center button' >Add Student</button>
                 </form>
             </div>
-            {/* {arr.map((item, index) => {
-                return (<div className="renderbox" id={index}>
+            {arr.map((item) => {
+                return (<div className="renderbox" >
                     <div className="renderleftbox">
                         <span className='renderedspan'><h4>Address : </h4><h5>{item.address}</h5></span>
                         <span className='renderedspan'><h4>Name : </h4><h5>{item.name}</h5></span>
@@ -39,13 +39,6 @@ function ListDocs() {
                     <div className="renderrightbox"><button className='center-button' >Add Student</button></div>
                 </div>)
             })}
-            <div className="renderbox">
-                <div className="renderleftbox">
-                    <h3>Address</h3>
-                    <h3>Name</h3>
-                </div>
-                <div className="renderrightbox"><Link className='center-button' >Add Student</Link></div>
-            </div> */}
 
         </div>
     )
