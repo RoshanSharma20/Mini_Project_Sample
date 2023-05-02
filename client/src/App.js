@@ -12,6 +12,7 @@ import {
 // import Create from "./components/Create";
 import ListDocs from "./components/ListDocs";
 import Create from "./components/Create";
+import UserSide from "./components/UserSide";
 
 function App() {
   //for awaiting metamask connection
@@ -38,7 +39,7 @@ function App() {
         const signer = provider.getSigner();
         const address = await signer.getAddress();
         setAccount(address);
-        let contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+        let contractAddress = "0xa513E6E4b8f2a923D98304ec87F64353C4D5C853";
 
         const contract = new ethers.Contract(
           contractAddress,
@@ -54,6 +55,11 @@ function App() {
     };
     provider && loadProvider();
   }, []);
+
+  const [userAccount, setUserAccount] = useState(null);
+  const setAccountUser = () => {
+
+  }
 
   return (
     <>
@@ -73,13 +79,14 @@ function App() {
       <br />
       <Create account={account} contract={contract} /> */}
       {/* <ListDocs account={account} contract={contract} /> */}
-
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" exact element={<ListDocs account={account} contract={contract} />} />
-          <Route path="/addCertificate" exact element={<Create contract={contract} account={account} />} />
-        </Routes>
-      </BrowserRouter>
+      {account == "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266" ?
+        (<BrowserRouter>
+          <Routes>
+            <Route path="/" exact element={<ListDocs account={account} contract={contract} setUserAccount={setUserAccount} />} />
+            <Route path="/addCertificate/:id" exact element={<Create contract={contract} account={account} />} />
+          </Routes>
+        </BrowserRouter>) : (<UserSide account={account} contract={contract} />)
+      }
     </>
   );
 }

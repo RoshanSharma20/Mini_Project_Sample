@@ -4,6 +4,7 @@ import { ethers } from "ethers"
 
 
 function DisplayCertificates({ contract, account }) {
+    const [listedItems, setListedItems] = useState({});
     const loadListedCertificates = async () => {
         let listedItems = [];
         const certificates = await getAddressUrl(account);
@@ -18,8 +19,14 @@ function DisplayCertificates({ contract, account }) {
                 description: metadata.description
             }
             listedItems.push(item);
+            console.log(item);
         }
+        setListedItems(listedItems);
     }
+
+    useEffect(() => {
+        loadListedCertificates()
+    }, [])
     return (
         <div>
             <h3>Displaying the url of certificates</h3>

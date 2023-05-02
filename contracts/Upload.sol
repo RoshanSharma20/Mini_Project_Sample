@@ -21,6 +21,9 @@ contract Upload is Ownable {
     //declaring a string of address that will be appended everytime when a new student will be added
     student[] public studentlist;
 
+    //maintianing count of all the registered students
+    uint256 public totalcount = 0;
+
     //creating a access structure defining the user and their access rights
     struct Access {
         address user;
@@ -43,6 +46,7 @@ contract Upload is Ownable {
         // console.log("error message");
         student memory std = student(user, name, age);
         studentlist.push(std);
+        totalcount++;
     }
 
     function display() external view returns (student[] memory) {
@@ -77,5 +81,13 @@ contract Upload is Ownable {
             }
         }
         return s;
+    }
+
+    function getCount() external view returns (uint256) {
+        return totalcount;
+    }
+
+    function getUser(uint256 index) external view returns (student memory) {
+        return studentlist[index];
     }
 }
