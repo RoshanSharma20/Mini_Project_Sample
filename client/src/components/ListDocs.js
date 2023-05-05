@@ -66,7 +66,7 @@ function ListDocs({ account, contract }) {
                 <img src={require("./market.png")} alt="" />
                 <h1>Ramaiah Institute Of Technology</h1>
             </div>
-            <div id="osh">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae, quisquam neque. Delectus porro dicta perferendis cumque eius. Officia dolor, ut voluptates impedit odio cumque incidunt iusto odit ea velit voluptate.</div>
+            <div id="osh">Located in Bangalore, Karnataka. Established in 1962, the college is affiliated to Visvesvaraya Technological University. Accredited by NAAC with 'A+' grade with score of 3.28. Ranked 67 among 1249 engineering colleges in India. All of our academic departments are accredited by NBA under new process</div>
             <div >
                 <form action="" className="fdata">
                     <input type="text" placeholder='enter name' className='name' required value={name} onChange={(e) => { setName(e.target.value) }} />
@@ -86,7 +86,9 @@ function ListDocs({ account, contract }) {
                         <span className='renderedspan'><h4>Name : </h4><h5>{item.name}</h5></span>
                         {/* <span className='renderedspan'><h4>Age : </h4><h5>{item[2]}</h5></span> */}
                     </div>
-                    <div className="renderrightbox"><Link className='center-button' to={'/addCertificate' + item.user}>Add Certificate</Link></div>
+                    <div className="renderrightbox"><Link className='center-button' to='/addCertificate'><button onClick={() => {
+                        localStorage.setItem("user_acc", item.user);
+                    }}>Add Certificate</button></Link></div>
                 </div>)
             })}
 

@@ -26,6 +26,8 @@ const client = ipfsClient.create({
 
 
 function Create({ contract, account }) {
+    const useracc = localStorage.getItem("user_acc");
+    console.log("account", useracc);
 
     const [image, setImage] = useState('')
     const [name, setName] = useState('')
@@ -59,7 +61,7 @@ function Create({ contract, account }) {
 
     const mintCertificate = async (result) => {
         const uri = `https://tftm.infura-ipfs.io/ipfs/${result.path}`;
-        await contract.addDetails(account, uri).wait();
+        await contract.addDetails(useracc, uri).wait();
         console.log("Documents have been added").wait();
     }
 

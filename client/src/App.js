@@ -39,7 +39,7 @@ function App() {
         const signer = provider.getSigner();
         const address = await signer.getAddress();
         setAccount(address);
-        let contractAddress = "0xa513E6E4b8f2a923D98304ec87F64353C4D5C853";
+        let contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 
         const contract = new ethers.Contract(
           contractAddress,
@@ -83,7 +83,7 @@ function App() {
         (<BrowserRouter>
           <Routes>
             <Route path="/" exact element={<ListDocs account={account} contract={contract} setUserAccount={setUserAccount} />} />
-            <Route path="/addCertificate/:id" exact element={<Create contract={contract} account={account} />} />
+            <Route path="/addCertificate" exact element={<Create contract={contract} account={account} />} />
           </Routes>
         </BrowserRouter>) : (<UserSide account={account} contract={contract} />)
       }
