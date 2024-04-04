@@ -13,6 +13,7 @@ import {
 import ListDocs from "./components/ListDocs";
 import Create from "./components/Create";
 import UserSide from "./components/UserSide";
+import Login from "./pages/login";
 
 function App() {
   //for awaiting metamask connection
@@ -21,7 +22,8 @@ function App() {
   const [contract, setContract] = useState(null);
   const [provider, setProvider] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userAccount, setUserAccount] = useState(null);
 
   useEffect(() => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -56,10 +58,10 @@ function App() {
     provider && loadProvider();
   }, []);
 
-  const [userAccount, setUserAccount] = useState(null);
-  const setAccountUser = () => {
-
-  }
+ 
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
 
   return (
     <>
@@ -79,14 +81,17 @@ function App() {
       <br />
       <Create account={account} contract={contract} /> */}
       {/* <ListDocs account={account} contract={contract} /> */}
-      {account == "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266" ?
-        (<BrowserRouter>
-          <Routes>
-            <Route path="/" exact element={<ListDocs account={account} contract={contract} setUserAccount={setUserAccount} />} />
-            <Route path="/addCertificate" exact element={<Create contract={contract} account={account} />} />
-          </Routes>
-        </BrowserRouter>) : (<UserSide account={account} contract={contract} />)
-      }
+      {isLoggedIn ? (
+       account == "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266" ?
+       (<BrowserRouter>
+         <Routes>
+           <Route path="/" exact element={<ListDocs account={account} contract={contract} setUserAccount={setUserAccount} />} />
+           <Route path="/addCertificate" exact element={<Create contract={contract} account={account} />} />
+         </Routes>
+       </BrowserRouter>) : (<UserSide account={account} contract={contract} />)
+      ) : (
+        <Login onLogin={handleLogin} />
+      )}
     </>
   );
 }
