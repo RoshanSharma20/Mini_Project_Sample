@@ -5,24 +5,30 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 // import console;
 
 contract Upload is Ownable {
-    // address public owner;
-
-    //initializing the owner as the first account in hardhat that deploys the contract
-    // constructor() {
-    //     owner = msg.sender;
-    // }
-
+    //structure of institute
+    struct institute {
+        address user;
+        string name;
+    }
+    //structure of student
     struct student {
         address user;
         string name;
         uint256 age;
     }
-
+    //declaring a string of address that will be appended everytime when a new institute will be added
+    institute[] public institutelist;
     //declaring a string of address that will be appended everytime when a new student will be added
     student[] public studentlist;
 
+    //mapping of student to institute list
+    mapping(address => string) public studentToInstitute;
+
     //maintianing count of all the registered students
     uint256 public totalcount = 0;
+
+    //maintaining count of all the registered institutes
+    uint256 public totalInstitute = 0;
 
     //creating a access structure defining the user and their access rights
     struct Access {
@@ -36,21 +42,35 @@ contract Upload is Ownable {
     //mapping to store access list granted by each address to other addresses
     mapping(address => Access[]) accessList;
 
+    //function to add institutes can be done only by the admin
+    function addInstitute(address user, string memory name) external onlyOwner {
+        institute memory inst = institute(user, name);
+        institutelist.push(inst);
+        totalInstitute++;
+    }
+
     //function to add students can be done only by the admin
     function addStudent(
         address user,
         string memory name,
-        uint256 age
+        uint256 age,
+        string memory inst
     ) external onlyOwner {
         // require(msg.sender == owner, "you are not allowed");
         // console.log("error message");
         student memory std = student(user, name, age);
+        studentToInstitute[user] = inst;
         studentlist.push(std);
         totalcount++;
     }
 
     function display() external view returns (student[] memory) {
         return studentlist;
+    }
+
+    //function to return the list of colleges
+    function displayCollege() external view returns (institute[] memory) {
+        return institutelist;
     }
 
     function addDetails(address useraddr, string memory url)

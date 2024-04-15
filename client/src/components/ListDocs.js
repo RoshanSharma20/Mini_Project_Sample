@@ -16,7 +16,7 @@ function ListDocs({ account, contract }) {
     const adduser = async (event) => {
         event.preventDefault();
         try {
-            await contract.addStudent(address, name, age);
+            await contract.addStudent(address, name, age, "rit");
             console.log("Student added");
         }
         catch (e) {
@@ -38,21 +38,11 @@ function ListDocs({ account, contract }) {
         getStudents();
     }, [])
 
+    const getStudentInstitute = async () => {
+        const data = await contract.studentToInstitute();
+    }
 
-    // const collectStudents = async () => {
-    //     const totalStudents = await contract.getCount();
-    //     let listedStudents = [];
-    //     for (let i = 0; i < totalStudents; ++i) {
-    //         const student = await contract.getUser(i);
-    //         listedStudents.push(student);
-    //     }
-    //     setArr(listedStudents);
-    // }
 
-    // useEffect(() => {
-    //     collectStudents();
-    // })
-    // collectStudents();
     return (
         <div>
             <div className="topbarcont">
@@ -84,7 +74,8 @@ function ListDocs({ account, contract }) {
                     <div className="renderleftbox">
                         <span className='renderedspan'><h4>Address : </h4><h5>{item.user}</h5></span>
                         <span className='renderedspan'><h4>Name : </h4><h5>{item.name}</h5></span>
-                        {/* <span className='renderedspan'><h4>Age : </h4><h5>{item[2]}</h5></span> */}
+                        <span className='renderedspan'><h4>College Name : </h4><h5>{//value//}</h5></span>
+
                     </div>
                     <div className="renderrightbox"><Link className='center-button' to='/addCertificate'><button onClick={() => {
                         localStorage.setItem("user_acc", item.user);

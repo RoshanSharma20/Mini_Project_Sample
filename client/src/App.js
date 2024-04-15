@@ -13,6 +13,8 @@ import {
 import ListDocs from "./components/ListDocs";
 import Create from "./components/Create";
 import UserSide from "./components/UserSide";
+import UniversityPage from "./components/UniversityPage";
+import CheckCredentials from "./components/CheckCredentials";
 
 function App() {
   //for awaiting metamask connection
@@ -39,7 +41,7 @@ function App() {
         const signer = provider.getSigner();
         const address = await signer.getAddress();
         setAccount(address);
-        let contractAddress = "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512";
+        let contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 
         const contract = new ethers.Contract(
           contractAddress,
@@ -54,6 +56,7 @@ function App() {
       }
     };
     provider && loadProvider();
+
   }, []);
 
   const [userAccount, setUserAccount] = useState(null);
@@ -79,13 +82,16 @@ function App() {
       <br />
       <Create account={account} contract={contract} /> */}
       {/* <ListDocs account={account} contract={contract} /> */}
-      {account == "0x5FbDB2315678afecb367f032d93F642f64180aa3" ?
+      {account == "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266" ?
         (<BrowserRouter>
           <Routes>
-            <Route path="/" exact element={<ListDocs account={account} contract={contract} setUserAccount={setUserAccount} />} />
+            <Route path="/" exact element={<UniversityPage account={account} contract={contract} setUserAccount={setUserAccount} />} />
+            <Route path="/collegePage" exact element={<ListDocs account={account} contract={contract} setUserAccount={setUserAccount} />} />
             <Route path="/addCertificate" exact element={<Create contract={contract} account={account} />} />
+            <Route path="/userSide" exact element={<UserSide contract={contract} account={account} />} />
           </Routes>
-        </BrowserRouter>) : (<UserSide account={account} contract={contract} />)
+        </BrowserRouter>) : (<CheckCredentials account={account} contract={contract} setUserAccount={setUserAccount} />)
+        // check credentials page should be there here but will check later how to correct it.
       }
     </>
   );
