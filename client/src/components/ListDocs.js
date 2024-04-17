@@ -3,7 +3,7 @@ import "./listdocs.css"
 import { Link } from "react-router-dom";
 
 
-function ListDocs({ account, contract }) {
+function ListDocs({ account, contract, currCollege }) {
     // var arr = [{ address: "a", name: "b", age: 3 }, { address: "d", name: "e", age: 5 }, { address: "h", name: "k", age: 6 }];
     // const navigate=useNavigate();
     //navigate("/path")
@@ -45,18 +45,23 @@ function ListDocs({ account, contract }) {
 
     return (
         <div>
-            <div className="topbarcont">
-                <div className="topbar">
-                    <img src={require("./market.png")} alt="" />
-                    <h1>One Stop Student Verification</h1>
-                    <h1>Account:{account ? account : "not connected"}</h1>
-                </div>
+         <nav class="navbar sticky-top navbar-expand-lg navbar navbar-dark bg-primary shadow">
+           <div class="container-fluid">
+               <img src={require("./market.png")} alt="" width="40" height="30" class="d-inline-block align-text-top"/>
+               <span class="navbar-text">
+      <h3>One Stop Solution for Students</h3>
+    </span>
+                 <button class="btn btn-success" type="button">Account : {account ? account : "not connected"}</button>
             </div>
+          </nav>
+            
             <div className="rit">
                 <img src={require("./market.png")} alt="" />
-                <h1>Ramaiah Institute Of Technology</h1>
+                <h1>{currCollege}</h1>
             </div>
-            <div id="osh">Located in Bangalore, Karnataka. Established in 1962, the college is affiliated to Visvesvaraya Technological University. Accredited by NAAC with 'A+' grade with score of 3.28. Ranked 67 among 1249 engineering colleges in India. All of our academic departments are accredited by NBA under new process</div>
+            <div id="osh">Located in Bangalore, Karnataka. Established in 1962, the college is affiliated to Visvesvaraya Technological University.
+             Accredited by NAAC with 'A+' grade with score of 3.28. Ranked 67 among 1249 engineering colleges in India. 
+             All of our academic departments are accredited by NBA under new process</div>
             <div >
                 <form action="" className="fdata">
                     <input type="text" placeholder='enter name' className='name' required value={name} onChange={(e) => { setName(e.target.value) }} />
@@ -74,7 +79,7 @@ function ListDocs({ account, contract }) {
                     <div className="renderleftbox">
                         <span className='renderedspan'><h4>Address : </h4><h5>{item.user}</h5></span>
                         <span className='renderedspan'><h4>Name : </h4><h5>{item.name}</h5></span>
-                        <span className='renderedspan'><h4>College Name : </h4><h5>{//value//}</h5></span>
+                        {/* <span className='renderedspan'><h4>College Name : </h4><h5>{//value//}</h5></span> */}
 
                     </div>
                     <div className="renderrightbox"><Link className='center-button' to='/addCertificate'><button onClick={() => {

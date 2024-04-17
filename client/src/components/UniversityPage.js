@@ -16,7 +16,7 @@ function UniversityPage({ account, contract }) {
             console.log("College added");
         }
         catch (e) {
-            console.log("error");
+            console.log(e);
         }
     }
 

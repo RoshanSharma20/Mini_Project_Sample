@@ -4,6 +4,7 @@ import { ethers } from "ethers"
 import { Row, Form, Button } from 'react-bootstrap'
 // import { create as ipfsHttpClient } from 'ipfs-http-client'
 import { Buffer } from 'buffer';
+import { Link } from 'react-router-dom';
 
 
 //for ipfs defining the client

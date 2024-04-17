@@ -55,7 +55,7 @@ contract Upload is Ownable {
         string memory name,
         uint256 age,
         string memory inst
-    ) external onlyOwner {
+    ) public {
         // require(msg.sender == owner, "you are not allowed");
         // console.log("error message");
         student memory std = student(user, name, age);
@@ -74,8 +74,7 @@ contract Upload is Ownable {
     }
 
     function addDetails(address useraddr, string memory url)
-        external
-        onlyOwner
+        public
     {
         ipfsurl[useraddr].push(url);
     }

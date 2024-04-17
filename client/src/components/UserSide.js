@@ -1,76 +1,8 @@
 import React, { useState, useEffect } from 'react'
 
-// function UserSide({ contract, account }) {
-//     const [student, setStudent] = useState({});
-//     const fetchingdata = async () => {
-//         let studentData = await contract.getUserDetails(account);
-//         setStudent(studentData);
-//     }
-
-//     fetchingdata();
-//     const [listedItems, setListedItems] = useState({});
-//     const loadListedCertificates = async () => {
-//         let listedItems = [];
-//         const certificates = await contract.getAddressUrl(account);
-//         for (let i = 0; i < certificates.length; ++i) {
-//             const uri = certificates[i];
-//             const new_uri = uri.replace("https://ipfs.infura.io/ipfs/", "https://tftm.infura-ipfs.io/ipfs/");
-//             const response = await fetch(new_uri);
-//             const metadata = await response.json();
-//             let item = {
-//                 image: metadata.image,
-//                 name: metadata.name,
-//                 description: metadata.description
-//             }
-//             listedItems.push(item);
-//             console.log(item);
-//         }
-//         setListedItems(listedItems);
-//     }
-//     useEffect(() => {
-//         loadListedCertificates()
-//     }, []);
-//     return (
-//         <>
-//             {(
-//                 <center>
-//                     <div>
-//                         <h3>user Details</h3>
-//                         <h3>Account:{account}</h3>
-//                     </div>
-
-//                     <div>
-//                         <p>name:{student.name}</p>
-//                         <p>account:{student.user} </p>
-//                     </div>
-//                 </center>
-//             )}
-
-// {listedItems.length > 0 && listedItems.map((item) => {
-//     return (
-//         <>
-//             <img src={item.image} alt="" />
-//             <h1>{item.name}</h1>
-//             <h1>{item.description}</h1>
-//         </>
-//     )
-// })}
-//         </>
-
-//     )
-// }
-
-// export default UserSide
-
-
-
-
-// --------------------------------------------------------------------------------------
-
-// import React from 'react';
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn, MDBTypography } from 'mdb-react-ui-kit';
 
-export default function EditButton({ contract, account }) {
+export default function UserSide({ contract, account }) {
     const [student, setStudent] = useState({});
     const fetchingdata = async () => {
         let studentData = await contract.getUserDetails(account);

@@ -66,33 +66,20 @@ function App() {
 
   return (
     <>
-      {/* <div className='d-flex flex-row justify-content-evenly'>
-        <h3>One-Stop-Student-Verification</h3>
-        <h3>Account:{account ? account : "not connected"}</h3>
-      </div>
-      <br />
-      <br />
-      <AddStudent contract={contract} />
-      <br />
-      <br />
-      <br />
-      <GetStudent account={account} contract={contract} />
-      <br />
-      <br />
-      <br />
-      <Create account={account} contract={contract} /> */}
-      {/* <ListDocs account={account} contract={contract} /> */}
-      {account == "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266" ?
-        (<BrowserRouter>
-          <Routes>
-            <Route path="/" exact element={<UniversityPage account={account} contract={contract} setUserAccount={setUserAccount} />} />
+      
+    
+        <BrowserRouter>
+        <Routes>
+            <Route path="/" exact element={account === "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266" ?<UniversityPage account={account} contract={contract} setUserAccount={setUserAccount} /> :<CheckCredentials account={account} contract={contract} setUserAccount={setUserAccount} /> } />
             <Route path="/collegePage" exact element={<ListDocs account={account} contract={contract} setUserAccount={setUserAccount} />} />
             <Route path="/addCertificate" exact element={<Create contract={contract} account={account} />} />
             <Route path="/userSide" exact element={<UserSide contract={contract} account={account} />} />
           </Routes>
-        </BrowserRouter>) : (<CheckCredentials account={account} contract={contract} setUserAccount={setUserAccount} />)
-        // check credentials page should be there here but will check later how to correct it.
-      }
+          </BrowserRouter>
+          
+        
+        
+    
     </>
   );
 }
